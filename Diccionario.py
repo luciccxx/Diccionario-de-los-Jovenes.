@@ -1,17 +1,21 @@
-meme_dict = {
-            "CRINGE": "Algo excepcionalmente raro o embarazoso",
-            "LOL": "Una respuesta común a algo gracioso",
-            "CREEPY": "aterrador, siniestro",
-            "XD":  "Representacion de una cara riendose a carcajadas con los ojos cerrados",
-            "AGGRO" : "ponerse agresivo/enojado"
-            }
+import discord
+from discord.ext import commands
+
+# Prefijo del bot
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.command(name = 'Saludar')
+async def saludar(ctx):
+    await ctx.send("Bienvenido Luciana Castaño 😂")
+
+@bot.command()
+async def repeat(ctx, times: int, content='repeating...'):
+    """Repeats a message multiple times."""
+    for i in range(times):
+        await ctx.send(content)
 
 
-word = input("Escribe una palabra que no entiendas (¡con mayúsculas!): ")
-
-if word in meme_dict.keys():
-    # ¿Qué debemos hacer si se encuentra la palabra?
-    print(meme_dict[word])
-else:
-    # ¿Qué hacer si no se encuentra la palabra?
-    print("Palabra no existente en el diccionario, escribir otra palabra")
+bot.run("")
